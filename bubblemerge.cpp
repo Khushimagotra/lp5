@@ -88,12 +88,10 @@ void swap_para(int *a, int *b) {
 
 void bubble_para(int arr[], int n) {
     int i = 0, j = 0;
-    int f;
-
+    #pragma omp parallel for shared(arr, n) private(i, j)
     for (i = 0; i < n - 1; i++) {
-        f = i % 2;
         #pragma omp parallel for default(none), shared(arr, f, n)
-        for (j = f; j < n - 1; j++) {
+        for (j = 0; j < n - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
                 swap_para(&arr[j], &arr[j + 1]);
             } 
@@ -148,4 +146,5 @@ int main() {
 
     return 0;
 }
+
 

@@ -4,6 +4,7 @@
 #include <queue>
 #include <omp.h>
 #include <chrono>
+#include<bits/stdc++.h>
 using namespace std;
 
 void BFS(const vector<vector<int>> &adjacencylist, vector<bool> &visited, queue<int> &q)
@@ -13,7 +14,6 @@ void BFS(const vector<vector<int>> &adjacencylist, vector<bool> &visited, queue<
         int vertex = q.front();
         q.pop();
         cout << vertex << " ";
-
 #pragma omp parallel for // Parallelize the loop
         for (int i = 0; i < adjacencylist[vertex].size(); ++i)
         {
@@ -53,7 +53,6 @@ void DFS(const vector<vector<int>> &adjacencylist, vector<bool> &visited, stack<
         }
     }
 }
-
 int main()
 {
     int nvertices, nedges;
@@ -61,9 +60,7 @@ int main()
     cin >> nvertices;
     cout << "Enter the number of edges: ";
     cin >> nedges;
-
     vector<vector<int>> adjacencylist(nvertices);
-
     cout << "Enter the edges in (source destination) format: ";
     for (int i = 0; i < nedges; i++)
     {
@@ -107,3 +104,5 @@ int main()
 
     return 0;
 }
+
+
